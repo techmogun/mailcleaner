@@ -1,0 +1,61 @@
+Login via SSH with your favorite terminal and run these commands:
+```sh
+$~: cd /etc
+$~: git clone https://github.com/letsencrypt/letsencrypt
+$~: cd /etc/letsencrypt
+$~: ./certbot-auto certonly --standalone --pre-hook '/usr/mailcleaner/etc/init.d/apache stop' --post-hook '/usr/mailcleaner/etc/init.d/apache start' -d mailcleaner.example.com
+```
+Edit the Mailcleaner Apache template
+```sh
+$~: nano /usr/mailcleaner/etc/apache/sites/mailcleaner.conf_template
+
+Change this:
+
+Redirect / https://__SERVERNAME__/
+
+########
+
+SSLCACertificatePath __SRCDIR__/etc/apache/certs
+SSLCertificateFile __SRCDIR__/etc/apache/certs/certificate.pem
+__IFSSLCHAIN__ SSLCertificateChainFile __SRCDIR__/etc/apache/certs/certificate-chain.pem
+To this:
+
+# Redirect / https://__SERVERNAME__/ 
+
+Redirect / https://mailcleaner.example.com/
+
+########
+
+# SSLCACertificatePath __SRCDIR__/etc/apache/certs
+# SSLCertificateFile __SRCDIR__/etc/apache/certs/certificate.pem
+#__IFSSLCHAIN__ SSLCertificateChainFile __SRCDIR__/etc/apache/certs/certificate-chain.pem
+
+SSLCACertificatePath /etc/letsencrypt/live/mailcleaner.example.com
+SSLCertificateFile /etc/letsencrypt/live/mailcleaner.example.com/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/mailcleaner.example.com/privkey.pem
+__IFSSLCHAIN__ SSLCertificateChainFile /etc/letsencrypt/live/mailcleaner.example.com/chain.pem
+```
+Extract the info from the Let’s Encrypt certs to your GUI
+Go to Configuration –> Services –> Webinterfaces and post the content of the following files:
+
+fullchain.pem –> Encoded SSL certificate 
+privkey.pem –> Encoded SSL private key
+chain.pem –> Encoded SSL certificate chain
+
+Use cat /etc/letsencrypt/live/mailcleaner.example.com/file.pem
+
+Restart Mailcleaner
+```sh
+$~: /usr/mailcleaner/etc/init.d/mailcleaner restart
+```
+
+Add a cronjob for the renewal
+```sh
+$~: crontab -e
+
+Add this at the bottom:
+
+# Let's Encrypt
+43 5 * * * /etc/letsencrypt/certbot-auto renew
+```
+Enjoy Mailcleaner with Let’s Encrypt!
