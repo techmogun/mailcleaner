@@ -2,7 +2,7 @@ Login via SSH with your favorite terminal and run these commands:
 $~: cd /etc
 $~: git clone https://github.com/letsencrypt/letsencrypt
 $~: cd /etc/letsencrypt
-$~: ./cerbot-auto certonly --standalone --pre-hook '/usr/mailcleaner/etc/init.d/apache stop' --post-hook '/usr/mailcleaner/etc/init.d/apache start' -d mailcleaner.example.com
+$~: ./certbot-auto certonly --standalone --pre-hook '/usr/mailcleaner/etc/init.d/apache stop' --post-hook '/usr/mailcleaner/etc/init.d/apache start' -d mailcleaner.example.com
 Edit the Mailcleaner Apache template
 $~: nano /usr/mailcleaner/etc/apache/sites/mailcleaner.conf_template
 Change this:
