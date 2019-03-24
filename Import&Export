@@ -1,0 +1,22 @@
+Export MYSQL Particular Table in MailCleaner
+```sh
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config domain > domain.sql
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config domain_pref > domain_pref.sql
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config user > user.sql
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config user_pref > user_pref.sql
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config email > email.sql
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config administrator > administrator.sql
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config wwlists > wwlists.sql
+/opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config mysql_auth > mysql_auth.sql
+```
+Input MYSQL Particular Table in MailCleaner
+```sh
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/domain.sql
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/domain_pref.sql
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/user.sql
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/user_pref.sql
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/email.sql
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/wwlists.sql
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/mysql_auth.sql
+/usr/mailcleaner/bin/mc_mysql -m mc_config < migration/administrator.sql
+```
