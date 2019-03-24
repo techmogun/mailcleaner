@@ -19,4 +19,3 @@
 /usr/mailcleaner/bin/mc_mysql -m mc_config < migration/wwlists.sql
 /usr/mailcleaner/bin/mc_mysql -m mc_config < migration/mysql_auth.sql
 /usr/mailcleaner/bin/mc_mysql -m mc_config < migration/administrator.sql
-```
