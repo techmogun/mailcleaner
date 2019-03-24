@@ -1,5 +1,5 @@
-Export MYSQL Particular Table in MailCleaner
-```sh
+#Export MYSQL Particular Table in MailCleaner
+
 /opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config domain > domain.sql
 /opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config domain_pref > domain_pref.sql
 /opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config user > user.sql
@@ -8,9 +8,9 @@ Export MYSQL Particular Table in MailCleaner
 /opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config administrator > administrator.sql
 /opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config wwlists > wwlists.sql
 /opt/mysql5/bin/mysqldump -S /var/mailcleaner/run/mysql_master/mysqld.sock -umailcleaner -p<Type_the_DB_password>-ntce mc_config mysql_auth > mysql_auth.sql
-```
-Input MYSQL Particular Table in MailCleaner
-```sh
+
+#Input MYSQL Particular Table in MailCleaner
+
 /usr/mailcleaner/bin/mc_mysql -m mc_config < migration/domain.sql
 /usr/mailcleaner/bin/mc_mysql -m mc_config < migration/domain_pref.sql
 /usr/mailcleaner/bin/mc_mysql -m mc_config < migration/user.sql
